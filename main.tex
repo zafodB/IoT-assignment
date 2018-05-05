@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[left=2.54cm,top=3cm,right=2.54cm,bottom=3cm]{geometry}
+\usepackage[sorting=none, style=numeric-comp]{biblatex}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{upgreek}
+\usepackage{setspace}
+% \usepackage{longtable}
+\usepackage{framed}
+\usepackage{eurosym}
+\usepackage{listings}
+\usepackage{rotating}
+\usepackage[table]{xcolor}
+\usepackage[acronym,toc]{glossaries}
+
+
+\def\code#1{\texttt{#1}}
+
+\graphicspath{ {00Images/} }
+\DeclareGraphicsExtensions{.png,.pdf}
+% \DeclareGraphicsExtensions{.pdf,.png} % - CHANGE TO THIS
+
+\addbibresource{mendeley.bib}
+\setlength{\parindent}{1cm}
+
+% Acronyms %%%%%%%%
+\makeglossaries
+
+\newacronym{iot}{IoT}{Internet of things}
+\newacronym{gps}{GPS}{Global Positioning System}
+\newacronym{gsm}{GSM}{Global System for Mobile Communication}
+% \newacronym{}{}{}
+% \newacronym{}{}{}
+% \newacronym{}{}{}
+% \newacronym{}{}{}
+% \newacronym{}{}{}
+
+\makeglossaries
+
+
+%%%%%%%%%%%%%%%%%%% 
+
+\begin{document}
+% 
+\tableofcontents
+\pagebreak
+
+\begin{singlespacing}
+\setglossarystyle{long}
+\printglossary[type=\acronymtype, title=List of acronyms and abbreviations, toctitle=List of acronyms and abbreviations, nonumberlist]
+\printglossary
+\end{singlespacing}
+
+\input{00introduction}
+\input{01architecture}
+\pagebreak
+
+
+\printbibliography[heading=bibintoc]
+\pagebreak
+
+
+\end{document}
