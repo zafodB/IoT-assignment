@@ -10,6 +10,7 @@
 \usepackage{upgreek}
 \usepackage{setspace}
 % \usepackage{longtable}
+\usepackage{tabularx}
 \usepackage{framed}
 \usepackage{eurosym}
 \usepackage{listings}
@@ -18,10 +19,8 @@
 \usepackage[acronym,toc]{glossaries}
 
 
-\def\code#1{\texttt{#1}}
-
-\graphicspath{ {00Images/} }
-\DeclareGraphicsExtensions{.png,.pdf}
+% \graphicspath{ {00images/} }
+% \DeclareGraphicsExtensions{.png,.pdf}
 % \DeclareGraphicsExtensions{.pdf,.png} % - CHANGE TO THIS
 
 \addbibresource{mendeley.bib}
@@ -33,6 +32,14 @@
 \newacronym{iot}{IoT}{Internet of things}
 \newacronym{gps}{GPS}{Global Positioning System}
 \newacronym{gsm}{GSM}{Global System for Mobile Communication}
+\newacronym{osi}{OSI}{Open Systems Interconnection}
+\newacronym{mac}{MAC}{Medium Access Control}
+\newacronym{llc}{LLC}{Logical Link Control}
+% \newacronym{}{}{}
+% \newacronym{}{}{}
+% \newacronym{}{}{}
+% \newacronym{}{}{}
+% \newacronym{}{}{}
 % \newacronym{}{}{}
 % \newacronym{}{}{}
 % \newacronym{}{}{}
@@ -57,6 +64,7 @@
 
 \input{00introduction}
 \input{01architecture}
+\input{02requirements/02mac_layer}
 \pagebreak
 
 
