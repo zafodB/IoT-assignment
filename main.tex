@@ -16,11 +16,11 @@
 \usepackage{listings}
 \usepackage{rotating}
 \usepackage[table]{xcolor}
-\usepackage[acronym,toc]{glossaries}
+\usepackage[acronym,toc,nogroupskip]{glossaries}
 
 
 % \graphicspath{ {00images/} }
-% \DeclareGraphicsExtensions{.png,.pdf}
+\DeclareGraphicsExtensions{.png,.pdf,.jpg}
 % \DeclareGraphicsExtensions{.pdf,.png} % - CHANGE TO THIS
 
 \addbibresource{mendeley.bib}
@@ -35,11 +35,17 @@
 \newacronym{osi}{OSI}{Open Systems Interconnection}
 \newacronym{mac}{MAC}{Medium Access Control}
 \newacronym{llc}{LLC}{Logical Link Control}
-% \newacronym{}{}{}
-% \newacronym{}{}{}
-% \newacronym{}{}{}
-% \newacronym{}{}{}
-% \newacronym{}{}{}
+\newacronym{udp}{UDP}{User Datagram Protocol}
+\newacronym{tcp}{TCP}{Transmission Control Protocol}
+\newacronym{wsn}{WSN}{Wireless sensor network}
+\newacronym{pdu}{PDU}{Protocol Data Unit}
+\newacronym{smacs}{SMACS}{Self-Organizing Medium Access Control for Sensornets}
+\newacronym{leach}{LEACH}{Low-energy adaptive clustering hierarchy}
+\newacronym{tdma}{TDMA}{Time-division multiple access}
+\newacronym{cdma}{CDMA}{Code-division multiple access}
+\newacronym{fdma}{FDMA}{Frequency-division multiple access}
+\newacronym{spin}{SPIN}{Sensor Protocols for Information via Negotiation}
+\newacronym{pegasus}{PEGASIS}{Power-Efficient Gathering in Sensor Information Systems}
 % \newacronym{}{}{}
 % \newacronym{}{}{}
 % \newacronym{}{}{}
@@ -48,25 +54,34 @@
 
 \makeglossaries
 
-
 %%%%%%%%%%%%%%%%%%% 
 
 \begin{document}
 % 
 \tableofcontents
-\pagebreak
+% \pagebreak
 
-\begin{singlespacing}
-\setglossarystyle{long}
+% \begin{singlespacing}
+\setglossarystyle{index}
 \printglossary[type=\acronymtype, title=List of acronyms and abbreviations, toctitle=List of acronyms and abbreviations, nonumberlist]
 \printglossary
-\end{singlespacing}
+% \end{singlespacing}
 
-\input{00introduction}
-\input{01architecture}
-\input{02requirements/02mac_layer}
 \pagebreak
 
+\input{01intro_arch/00introduction}
+\input{01intro_arch/01architecture}
+
+\input{02requirements/01physical_layer}
+\input{02requirements/02mac_layer}
+\input{02requirements/03network_layer}
+\input{02requirements/04transport_layer}
+\pagebreak
+
+\input{03technologies/00technologies_intro}
+\input{03technologies/01physical_tech}
+\input{03technologies/02mac_tech}
+\input{03technologies/03network_tech}
 
 \printbibliography[heading=bibintoc]
 \pagebreak

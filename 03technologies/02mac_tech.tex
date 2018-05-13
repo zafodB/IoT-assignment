@@ -1,0 +1,29 @@
+\subsection{MAC layer technologies}
+
+In this section we will explore different \acrshort{mac} technologies that could be used in our system. In figure~\ref{fig:mac-categories} on page \pageref{fig:mac-categories}, some examples of widely-used approaches to the MAC layer are given. However, due to power-consumption constraints of the sensors, these may not be suitable in \acrshort{wsn} scenario~\cite{Sohraby2007WirelessApplications}. In the following paragraphs we narrow our considerations to the following three protocols, that have been introduced specifically for WSNs:
+\begin{itemize}[noitemsep]
+    \item \acrfull{leach}
+    \item \acrfull{smacs}
+    \item Bluetooth
+\end{itemize}
+
+\paragraph{LEACH}
+\acrshort{leach} is a protocol that organises sensors randomly into clusters. Each cluster has a dedicated sensor, posing as the \textit{cluster head}. Sensors within a cluster only communicate with the cluster heads, while cluster heads communicate with the sink (more on the architecture of the \acrshort{leach} protocol in the following section.
+
+LEACH uses \acrfull{tdma} to coordinate transmissions within the cluster. During the setup phase, the cluster head receives messages from all the nodes that would like to be part of the cluster. The cluster head then creates a \acrshort{tdma} schedule for all the participating nodes. The nodes switch off their radio, if it is not their time to broadcast or if they have no data to transmit. Since transmitting and listening on the network amount for a significant part of the energy consumption of a node, switching the radio off can increases the power efficiency~\cite{Sohraby2007WirelessApplications, Heinzelman2000Energy-efficientNetworks}.
+
+To prevent interference among different clusters, \acrshort{leach} also uses \acrfull{cdma}. Every cluster uses different set of codes, which are also chosen by the cluster head. This way, every node in the cluster filters incoming messages with the code of its respective cluster and thus does not need to process messages incoming from neighbouring clusters, as these will become filtered out~\cite{Heinzelman2000Energy-efficientNetworks}.
+
+\paragraph{SMACS}
+\acrshort{smacs} is a flat-level structure. There are no clusters and cluster heads, instead each node talks with its immediate neighbours. In \acrlong{smacs}, nodes carry out a procedure to discover their neighbours. While \acrshort{tdma} is used throughout the whole network, a \textit{superframe} is maintained by every node to enable the neighbour-discovery process. During this process, the node assigns a time frame to all of its neighbours and every node maintains its own \acrshort{tdma} table, next to the superframe. This way, the node only talks to one of its neighbours at a time. For every such link, a different random \acrshort{cdma} code or \acrshort{fdma} frequency is used to avoid interference among different links that (coincidentally) share the same time slot~\cite{Sohraby2007WirelessApplications, Sohrabi2000ProtocolsNetwork}.
+
+\paragraph{Bluetooth}
+Nodes in Bluetooth network form small local clusters called \textit{piconets}. Piconet can include up to seven slave devices and one master device. The master device is responsible for coordinating access of the slave devices to the shared channel and for relaying messages inside and outside of the piconet. Bluetooth is based on \acrshort{tdma} where each slave in piconet has dedicated time slot during which it can transmit. The schedule is decided and maintained by the master device. To save energy, slave devices can enter one of the power-conservation modes~\cite{Haartsen2000TheSystem, Sohraby2007WirelessApplications}:
+\begin{itemize}[noitemsep]
+    \item \textbf{Sniff mode}, during which the device wakes up regularly, but the sleep time is longer, when compared to active mode.
+    \item During the \textbf{hold mode}, device goes to sleep once, but for prolonged amount of time. After this time has elapsed, the devices goes back to active mode.
+    \item When in \textbf{park mode}, the device goes to sleep for an indefinite amount of time and needs to be waken up by an external event.
+\end{itemize}
+
+However, the main feature of Bluetooth is arguably its frequency hopping scheme. The Bluetooth frequency band is divided into 79 hop carriers. During its operation, devices switch between frequencies repeatedly, with schedule determined by the master device. All devices in the piconet switch the hop carriers simultaneously and every piconet has its own jumping order defined upon creation.
+
