@@ -1,5 +1,5 @@
 \subsection{Data link layer}
-Data link layer is the second layer of the \acrshort{osi} reference model. It consists of \acrfull{mac} and \acrfull{llc} layer. The \acrshort{mac} layer is responsible for regulating the access to the shared communication medium among the nodes, while the \acrshort{llc} layer is used to define and control properties of the \acrshort{mac} layer, to shield the upper layers of the model from the physical network and provide inter-operability  across different types of networks. Since the use of \acrshort{llc} layer in practice is limited~\cite{Sohraby2007WirelessApplications}, we will further focus on the \acrshort{mac} layer.
+Data link layer is the second layer of the \acrshort{osi} reference model. It consists of \acrfull{mac} and \acrfull{llc} layer. The \acrshort{mac} layer is responsible for regulating the access to the shared communication medium among nodes, while the \acrshort{llc} layer is used to define and control properties of the \acrshort{mac} layer, to shield the upper layers of the model from the physical network and provide inter-operability  across different types of networks. Since the use of \acrshort{llc} layer in practice is limited~\cite{Sohraby2007WirelessApplications}, we will further focus on the \acrshort{mac} layer.
 
 The medium access control layer is responsible for managing the access to the shared communication medium. In wireless networks, it is usually the case that only one device can use the wireless medium at a time, otherwise the interference of wireless signals will render the transmission invalid. The \acrshort{mac} layer resolves this problem, by maintaining a scheme on how and when each node can transmit. The design of the \acrshort{mac} layer is the ``\textit{major determining factor in Wireless Sensor Network performance}''\cite{Sohraby2007WirelessApplications}. 
 
@@ -7,7 +7,7 @@ However, there are several complexities associated with designing this layer. Be
 
 There are several metrics that can be used to asses the performance of a \acrshort{mac} layer. 
 
-\begin{table}[htbp]
+\begin{table}[ht]
     \centering
     \begin{tabularx}{\textwidth}{|l|X|p{5em}|}
     \hline

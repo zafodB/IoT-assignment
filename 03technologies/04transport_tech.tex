@@ -1,1 +1,36 @@
 \subsection{Transport layer technologies}
+
+In consideration of the transport layer technologies that would be suitable for our scenario, we have limited our analysis on technologies that upstream data from the sensors to the sink. The data in our scenario usually do not flow in the other~--~downstream -- direction. We have shortlisted these protocols, based on~\cite{Sohraby2007WirelessApplications}: \textit{\acrfull{coda}}, \textit{\acrfull{rmst}} and \textit{\acrfull{esrt}}.
+
+\paragraph{CODA}
+\acrfull{coda} was designed to be implemented in an event-driven sensor network, where the nodes are usually idle, but when an external event occurs, a lot of data is produced at one, resulting in a peak in the data traffic~\cite{Wan2003CODA:Networks}. \acrshort{coda} handles this by introducing three core concepts:
+\begin{itemize}[noitemsep]
+    \item \textit{Congestion detection} -- nodes periodically wake up to monitor the status of the network in their neighbourhood. If a congestion is detected, nodes notify their upstream neighbours about this.
+    % 
+    \item \textit{Open-loop Hop-by-hop backpressure}\footnotemark -- If a node detects backpressure in its neighbourhood it broadcasts backpressure messages to all its neighbours. Node that receives such a messages can decide, whether or not it forwards it further, based on conditions in its own neighbourhood. It can also decide to drop packets or throttle its sending rate, in an attempt to resolve the congestion~\cite{Wan2003CODA:Networks}.
+    \footnotetext{\textit{Open loop} refers to the fact, that nodes broadcast backpressure messages \textit{at their own discretion}. There is no reply needed for these messages and a node will continue broadcasting them as long as it detects congestion.}
+    % 
+    \item \textit{Closed loop Multi-source regulation}\footnotemark -- In addition to the open loop congestion control, \acrshort{coda} also implements closed loop regulation. If the utilisation of the network is above some specified threshold (fraction of maximum theoretical throughput), nodes can set a regulation bit in the packets they produce. When the sink receives packets with set regulation bit, it needs to issue \texttt{ACK} packets in reply (at a defined rate - e.g. 1 \texttt{ACK} per 100 packets). If the source node receives an \texttt{ACK} packet for its messages, it will continue transmitting at unchanged (or higher) rate. However, if it does not receive the \texttt{ACK} packet, it will throttle its sending rate to avoid congestion.
+    \footnotetext{\textit{Closed loop} refers to the fact that there is a reply (ACK packet) to the original message.}
+\end{itemize}
+
+\paragraph{RMST}
+\acrfull{rmst} is designed to run above \textit{direct diffusion}, which is a network layer protocol. The objective of \acrshort{rmst} is to provide guaranteed delivery and reassembly of data at the end-point. It uses selective \texttt{NACK} (negative acknowledgement) and can also use caching to recover missing packets~\cite{Stann2003RMST:Networks, Sohraby2007WirelessApplications}.
+
+Direct diffusion works on a \textit{subscription} principle, where nodes subscribe for data changes based on a specific topic. Data that does not fall under a topic chosen by the node will be not delivered to it. \acrshort{rmst} builds on top of this. In cache mode, all nodes along the path create their own copy of the transmitted data. If any of these nodes is missing a packet it can initiate recovery of that packet. If other nodes in the neighbourhood have it in their copy, they will forward it. In cache-less mode, only the sink checks for the integrity and completeness of the data. \texttt{NACK} is used on a timer basis. If a node does not receive a packet for specific amount of time, it sends a \texttt{NACK} to the source. In cache-mode, every node maintains its own timer. In cache-less mode, only the sink maintains a timer~\cite{Stann2003RMST:Networks}.
+
+\paragraph{ESRT}
+The main focus of \acrfull{esrt} is the reliable detection of an event within the \acrshort{wsn}. It does not guarantee end-to-end data delivery and is driven by the notion that ``\textit{the sink is only interested in reliable detection of event
+features from the collective information provided by numerous sensor nodes and not in their individual reports}''~\cite{Sankarasubramaniam2003ESRT:Networks}. The main features of \acrshort{esrt} are:
+\begin{itemize}[noitemsep, nolistsep]
+    \item \textit{Self-configuration} ESRT remains operable even when network topology changes. 
+    \item \textit{Energy awareness} The protocol aims to save as much power as possible, while maintaining consistent event detection and reporting rate.
+    \item \textit{Collective identification} The sink is not interested in individual node data, instead it collects aggregated data from all the sensors that witnessed the event.
+    \item \textit{Congestion control} Because of the aggregated nature of the event information, the protocol does not need to ensure that every single packet is delivered. However, ESRT reduces the transmission rate in case of congestion in order to conserve the battery power of the sensors.
+    \item \textit{Biased implementation} The major part of the protocol is implemented at the sink, thus lowering the required processing power of the sensors.
+\end{itemize}
+
+\paragraph{Conclusion}
+\acrshort{esrt} works better in bigger networks with higher number of sensors, where aggregated data provides the sink with sufficient information. In the container, data from every single sensor are relevant, since a single value that does not fulfil the limits may indicate presence of a temperature (or gas) bubble. \acrshort{coda} is efficient an environment with bursts of data, due to its congestion handling capabilities. The data in a container are produces at a steady pace, therefore bursts of data are unlikely. For the shipping scenario, \acrshort{rmst} seems to be the best fit. Its guaranteed delivery ensures that all the data from every sensors will reach the sink, which is preferred. Sink can then evaluate these data and take appropriate action.
+
+For container-to-hub scenario, a regular (non-WSN) transport layer protocol can be used. Since reefer containers are connected to a power source to maintain their temperature, energy conservation is not necessary. \acrshort{tcp} would probably be a better fit for this, to ensure that data from each container are reliably delivered.

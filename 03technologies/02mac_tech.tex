@@ -1,6 +1,6 @@
 \subsection{MAC layer technologies}
 
-In this section we will explore different \acrshort{mac} technologies that could be used in our system. In figure~\ref{fig:mac-categories} on page \pageref{fig:mac-categories}, some examples of widely-used approaches to the MAC layer are given. However, due to power-consumption constraints of the sensors, these may not be suitable in \acrshort{wsn} scenario~\cite{Sohraby2007WirelessApplications}. In the following paragraphs we narrow our considerations to the following three protocols, that have been introduced specifically for WSNs:
+In this section we will explore different \acrshort{mac} technologies that could be used in our system. In figure~\ref{fig:mac-categories} on page \pageref{fig:mac-categories}, some examples of widely-used approaches to the MAC layer are given. However, due to power-consumption constraints of sensors, these may not be suitable in \acrshort{wsn} scenario~\cite{Sohraby2007WirelessApplications}. In the following paragraphs we narrow our considerations to the following three protocols, that have been introduced specifically for WSNs:
 \begin{itemize}[noitemsep]
     \item \acrfull{leach}
     \item \acrfull{smacs}
@@ -25,5 +25,5 @@ Nodes in Bluetooth network form small local clusters called \textit{piconets}. P
     \item When in \textbf{park mode}, the device goes to sleep for an indefinite amount of time and needs to be waken up by an external event.
 \end{itemize}
 
-However, the main feature of Bluetooth is arguably its frequency hopping scheme. The Bluetooth frequency band is divided into 79 hop carriers. During its operation, devices switch between frequencies repeatedly, with schedule determined by the master device. All devices in the piconet switch the hop carriers simultaneously and every piconet has its own jumping order defined upon creation.
-
+\paragraph{Conclusion}
+To prevent possible interference among adjacent containers, it would be beneficial to avoid flat-level structure. Both Bluetooth and LEACH form structures where one node is superior to the other nodes. Sink could be this superior node as it is not battery-dependant. Bluetooth only supports eight devices in a piconet, but this should be sufficient for the number of sensors in a reefer container. The ability of \acrshort{leach} to form clusters is an advantage in networks with greater amount of nodes and it may be unnecessarily complex for our scenario.

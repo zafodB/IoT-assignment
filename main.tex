@@ -2,21 +2,22 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{titlesec}
-\usepackage{enumitem}
+\usepackage[inline]{enumitem}
 \usepackage[left=2.54cm,top=3cm,right=2.54cm,bottom=3cm]{geometry}
 \usepackage[sorting=none, style=numeric-comp]{biblatex}
 \usepackage{hyperref}
 \usepackage{graphicx}
-\usepackage{upgreek}
+% \usepackage{upgreek}
 \usepackage{setspace}
 % \usepackage{longtable}
 \usepackage{tabularx}
 \usepackage{framed}
-\usepackage{eurosym}
+% \usepackage{eurosym}
 \usepackage{listings}
 \usepackage{rotating}
 \usepackage[table]{xcolor}
-\usepackage[acronym,toc,nogroupskip]{glossaries}
+\usepackage[acronym,toc,nogroupskip,nopostdot]{glossaries}
+\usepackage{glossary-mcols}
 
 
 % \graphicspath{ {00images/} }
@@ -46,7 +47,11 @@
 \newacronym{fdma}{FDMA}{Frequency-division multiple access}
 \newacronym{spin}{SPIN}{Sensor Protocols for Information via Negotiation}
 \newacronym{pegasus}{PEGASIS}{Power-Efficient Gathering in Sensor Information Systems}
-% \newacronym{}{}{}
+\newacronym{rmst}{RMST}{Reliable Multisegment Transport}
+\newacronym{esrt}{ESRT}{Event-to-Sink Reliable Transport}
+\newacronym{coda}{CODA}{Congestion Detection and Avoidance}
+\newacronym{pan}{PAN}{Personal Area Network}
+\newacronym{aes}{AES}{Advanced Encryption Standard}
 % \newacronym{}{}{}
 % \newacronym{}{}{}
 % \newacronym{}{}{}
@@ -62,7 +67,7 @@
 % \pagebreak
 
 % \begin{singlespacing}
-\setglossarystyle{index}
+\setglossarystyle{mcolindex}
 \printglossary[type=\acronymtype, title=List of acronyms and abbreviations, toctitle=List of acronyms and abbreviations, nonumberlist]
 \printglossary
 % \end{singlespacing}
@@ -71,18 +76,20 @@
 
 \input{01intro_arch/00introduction}
 \input{01intro_arch/01architecture}
-
+% 
+\input{02requirements/00requirement_intro}
 \input{02requirements/01physical_layer}
 \input{02requirements/02mac_layer}
 \input{02requirements/03network_layer}
 \input{02requirements/04transport_layer}
-\pagebreak
-
+% 
 \input{03technologies/00technologies_intro}
 \input{03technologies/01physical_tech}
 \input{03technologies/02mac_tech}
 \input{03technologies/03network_tech}
-
+\input{03technologies/04transport_tech}
+% 
+\pagebreak
 \printbibliography[heading=bibintoc]
 \pagebreak
 
